@@ -7,7 +7,7 @@ public class Ingredient {
     public Ingredient() {
     }
 
-    public Ingredient(String name, double quantity) {
+    public Ingredient(final String name,final double quantity) {
         this.name = name;
         this.quantity = quantity;
     }
@@ -26,5 +26,13 @@ public class Ingredient {
 
     public void setQuantity(double quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "Ingredient{" +
+                "name='" + name + '\'' +
+                ", quantity=" + quantity +
+                '}';
     }
 }

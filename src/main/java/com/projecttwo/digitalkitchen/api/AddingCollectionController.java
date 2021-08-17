@@ -1,6 +1,8 @@
 package com.projecttwo.digitalkitchen.api;
 
+import com.projecttwo.digitalkitchen.model.Recipe;
 import com.projecttwo.digitalkitchen.model.User;
+import com.projecttwo.digitalkitchen.repository.RecipeRepository;
 import com.projecttwo.digitalkitchen.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,26 +19,22 @@ import java.security.Principal;
 @RequestMapping("/api")
 public class AddingCollectionController {
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
+   @Autowired
     private UserRepository userRepository;
 
-    @PostMapping("/private/recipes")
-    public String addNewRecipe(Principal principal){
-        SecurityContext securityContext = SecurityContextHolder.getContext();
-        Authentication authentication = securityContext.getAuthentication();
+   @Autowired
+   private RecipeRepository recipeRepository;
 
-        System.out.println(principal.getName());
-        System.out.println(authentication.getAuthorities());
+    @PostMapping("/private/recipes")
+    public String addNewRecipe(@RequestBody Recipe recipe){
+        recipeRepository.save(recipe);
         return "new recipe added";
     }
 
-    @PostMapping("/public/users")
+    @PostMapping(value = "/users")
     public ResponseEntity<?> registerUser(@RequestBody User user){
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+        System.out.println("REGISTERING A USER............................................................");
+            userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

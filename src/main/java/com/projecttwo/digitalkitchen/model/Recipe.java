@@ -2,8 +2,13 @@ package com.projecttwo.digitalkitchen.model;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Document
@@ -12,30 +17,22 @@ public class Recipe {
     @Id
     private ObjectId _id;
     private String name;
-    private int prepration_time;
-    private int total_time;
-    private List<Ingredient> ingredients;
+    @Field("Prep_Time")
+    private String prepration_time;
+    @Field("Total_Time")
+    private String total_time;
+    private String image_path;
+    @Field("Ingredients")
+    private ArrayList<Ingredient> ingredients;
+    @Field("Steps")
     private  List<String> steps;
-    private List<String> category;
+    private List<String>  category;
     private int rating;
-    private User user_id;
-    private List<Nutrient> nutrients;
-
-
-    public Recipe() {
-    }
-
-    public Recipe(String name, int prepration_time, int total_time, List<Ingredient> ingredients, List<String> steps, List<String> category, int rating, User user_id, List<Nutrient> nutrients) {
-        this.name = name;
-        this.prepration_time = prepration_time;
-        this.total_time = total_time;
-        this.ingredients = ingredients;
-        this.steps = steps;
-        this.category = category;
-        this.rating = rating;
-        this.user_id = user_id;
-        this.nutrients = nutrients;
-    }
+//    @DBRef
+//    @Field(value = "user_id")
+//    private User user;
+    @Field("Nutrition_Value")
+    private ArrayList<Nutrient> nutrients;
 
     public ObjectId get_id() {
         return _id;
@@ -53,27 +50,27 @@ public class Recipe {
         this.name = name;
     }
 
-    public int getPrepration_time() {
+    public String getPrepration_time() {
         return prepration_time;
     }
 
-    public void setPrepration_time(int prepration_time) {
+    public void setPrepration_time(String prepration_time) {
         this.prepration_time = prepration_time;
     }
 
-    public int getTotal_time() {
+    public String getTotal_time() {
         return total_time;
     }
 
-    public void setTotal_time(int total_time) {
+    public void setTotal_time(String total_time) {
         this.total_time = total_time;
     }
 
-    public List<Ingredient> getIngredients() {
+    public ArrayList<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
+    public void setIngredients(ArrayList<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
@@ -101,19 +98,44 @@ public class Recipe {
         this.rating = rating;
     }
 
-    public User getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(User user_id) {
-        this.user_id = user_id;
-    }
-
-    public List<Nutrient> getNutrients() {
+    public ArrayList<Nutrient> getNutrients() {
         return nutrients;
     }
 
-    public void setNutrients(List<Nutrient> nutrients) {
+    public void setNutrients(ArrayList<Nutrient> nutrients) {
         this.nutrients = nutrients;
+    }
+
+    public String getImage_path() {
+        return image_path;
+    }
+
+    public void setImage_path(String image_path) {
+        this.image_path = image_path;
+    }
+
+//        public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
+
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "_id=" + _id +
+                ", name='" + name + '\'' +
+                ", prepration_time='" + prepration_time + '\'' +
+                ", total_time='" + total_time + '\'' +
+                ", image_path='" + image_path + '\'' +
+                ", ingredients=" + ingredients +
+                ", steps=" + steps +
+                ", category=" + category +
+                ", rating=" + rating +
+                ", nutrients=" + nutrients +
+                '}';
     }
 }

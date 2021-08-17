@@ -7,7 +7,7 @@ public class Nutrient {
     public Nutrient() {
     }
 
-    public Nutrient(String name, String amount) {
+    public Nutrient(final String name, final String amount) {
         this.name = name;
         this.amount = amount;
     }
@@ -26,5 +26,13 @@ public class Nutrient {
 
     public void setAmount(String amount) {
         this.amount = amount;
+    }
+
+    @Override
+    public String toString() {
+        return "Nutrient{" +
+                "name='" + name + '\'' +
+                ", amount='" + amount + '\'' +
+                '}';
     }
 }
