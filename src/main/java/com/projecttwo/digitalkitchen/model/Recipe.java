@@ -1,5 +1,8 @@
 package com.projecttwo.digitalkitchen.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -7,15 +10,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Document
 public class Recipe {
 
     @Id
-    private ObjectId _id;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @JsonSerialize(using= ToStringSerializer.class)
+    private ObjectId id;
     private String name;
     @Field("Prep_Time")
     private String prepration_time;
@@ -28,18 +31,18 @@ public class Recipe {
     private  List<String> steps;
     private List<String>  category;
     private int rating;
-//    @DBRef
-//    @Field(value = "user_id")
-//    private User user;
+    @DBRef
+    @Field(value = "user_id")
+    private User user;
     @Field("Nutrition_Value")
     private ArrayList<Nutrient> nutrients;
 
-    public ObjectId get_id() {
-        return _id;
+    public ObjectId getId() {
+        return id;
     }
 
-    public void set_id(ObjectId _id) {
-        this._id = _id;
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -114,19 +117,19 @@ public class Recipe {
         this.image_path = image_path;
     }
 
-//        public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
+        public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
 
     @Override
     public String toString() {
         return "Recipe{" +
-                "_id=" + _id +
+                "_id=" + id +
                 ", name='" + name + '\'' +
                 ", prepration_time='" + prepration_time + '\'' +
                 ", total_time='" + total_time + '\'' +

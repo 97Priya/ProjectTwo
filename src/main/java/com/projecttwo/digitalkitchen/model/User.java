@@ -57,4 +57,14 @@ public class User {
     public void setAuthorities(Set<String> authorities) {
         this.authorities = authorities;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", authorities=" + authorities +
+                '}';
+    }
 }

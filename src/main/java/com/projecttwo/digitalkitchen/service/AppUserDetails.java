@@ -20,7 +20,7 @@ public class AppUserDetails implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        System.out.println(s);
+      //  System.out.println(s);
         Optional<com.projecttwo.digitalkitchen.model.User> optional = userRepository.findById(s);
         com.projecttwo.digitalkitchen.model.User dbUser = optional.orElseThrow(() -> new UsernameNotFoundException(s));
 
