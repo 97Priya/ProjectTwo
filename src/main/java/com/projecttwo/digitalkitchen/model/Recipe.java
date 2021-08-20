@@ -21,10 +21,11 @@ public class Recipe {
     private ObjectId id;
     private String name;
     @Field("Prep_Time")
-    private String prepration_time;
+    private String preparation_time;
     @Field("Total_Time")
     private String total_time;
-    private String image_path;
+    @Field("image_path")
+    private String image_url;
     @Field("Ingredients")
     private ArrayList<Ingredient> ingredients;
     @Field("Steps")
@@ -53,12 +54,12 @@ public class Recipe {
         this.name = name;
     }
 
-    public String getPrepration_time() {
-        return prepration_time;
+    public String getPreparation_time() {
+        return preparation_time;
     }
 
-    public void setPrepration_time(String prepration_time) {
-        this.prepration_time = prepration_time;
+    public void setPreparation_time(String preparation_time) {
+        this.preparation_time = preparation_time;
     }
 
     public String getTotal_time() {
@@ -109,12 +110,12 @@ public class Recipe {
         this.nutrients = nutrients;
     }
 
-    public String getImage_path() {
-        return image_path;
+    public String getImage_url() {
+        return image_url;
     }
 
-    public void setImage_path(String image_path) {
-        this.image_path = image_path;
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 
         public User getUser() {
@@ -131,9 +132,9 @@ public class Recipe {
         return "Recipe{" +
                 "_id=" + id +
                 ", name='" + name + '\'' +
-                ", prepration_time='" + prepration_time + '\'' +
+                ", prepration_time='" + preparation_time + '\'' +
                 ", total_time='" + total_time + '\'' +
-                ", image_path='" + image_path + '\'' +
+                ", image_path='" + image_url + '\'' +
                 ", ingredients=" + ingredients +
                 ", steps=" + steps +
                 ", category=" + category +

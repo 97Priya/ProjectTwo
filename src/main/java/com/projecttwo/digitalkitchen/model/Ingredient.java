@@ -2,12 +2,12 @@ package com.projecttwo.digitalkitchen.model;
 
 public class Ingredient {
     private  String name;
-    private double quantity;
+    private String quantity;
 
     public Ingredient() {
     }
 
-    public Ingredient(final String name,final double quantity) {
+    public Ingredient(final String name,final String quantity) {
         this.name = name;
         this.quantity = quantity;
     }
@@ -20,11 +20,11 @@ public class Ingredient {
         this.name = name;
     }
 
-    public double getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(double quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 

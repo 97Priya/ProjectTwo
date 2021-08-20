@@ -14,7 +14,7 @@ public class User {
     @Field(value = "_id")
     private String email;
     private String password;
-    private Set<String> authorities;
+
 
     public User() {
     }
@@ -50,21 +50,6 @@ public class User {
         this.password = password;
     }
 
-    public Set<String> getAuthorities() {
-        return authorities;
-    }
 
-    public void setAuthorities(Set<String> authorities) {
-        this.authorities = authorities;
-    }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", authorities=" + authorities +
-                '}';
-    }
 }

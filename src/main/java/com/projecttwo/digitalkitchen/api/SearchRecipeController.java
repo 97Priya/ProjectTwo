@@ -42,8 +42,8 @@ public class SearchRecipeController {
         Page<Recipe> resultPage =recipeService.getRecipeByName(page,size,name);
         return resultPage.getContent();
     }
-    @GetMapping("/paginated")
-    public List<Recipe> getPaginatedRecipeByCategory(@RequestParam("page") int page,@RequestParam String category){
+    @GetMapping("/paginated/{category}")
+    public List<Recipe> getPaginatedRecipeByCategory(@RequestParam("page") int page,@PathVariable String category){
         Page<Recipe> resultPage =recipeService.getRecipeByCategory(page,size,category);
         return resultPage.getContent();
     }

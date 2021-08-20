@@ -33,7 +33,7 @@ public class AddingCollectionController {
 
 
     @PostMapping("/private/recipes")
-    public String addNewRecipe(@RequestBody Recipe recipe,Principal principal){
+    public ResponseEntity<?> addNewRecipe(@RequestBody Recipe recipe,Principal principal){
 
         String str=principal.getName();
        User user= userRepository.findById(str).get();
@@ -41,7 +41,9 @@ public class AddingCollectionController {
         System.out.println(recipe.getUser());
         recipeRepository.save(recipe);
 
-        return "new recipe added";
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+
+       // return ResponseEntity.ok().body(recipe);
     }
 
     @PostMapping(value = "/users")
