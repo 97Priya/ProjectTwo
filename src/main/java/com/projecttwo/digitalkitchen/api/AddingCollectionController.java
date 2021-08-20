@@ -18,6 +18,7 @@ import java.util.Arrays;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin("*")
 public class AddingCollectionController {
 
    @Autowired

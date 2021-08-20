@@ -1,6 +1,8 @@
 package com.projecttwo.digitalkitchen.api;
 
 import com.projecttwo.digitalkitchen.model.Recipe;
+import com.projecttwo.digitalkitchen.model.User;
+import com.projecttwo.digitalkitchen.repository.UserRepository;
 import com.projecttwo.digitalkitchen.service.RecipeService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,17 @@ public class SearchRecipeController {
     @Autowired
     private RecipeService recipeService;
 
+    @Autowired
+    private UserRepository userRepository;
+
     private static final int size=4;
+
+    @GetMapping("user/{name}")
+    public List<Recipe> findByUser(@RequestParam("page") int page,@PathVariable String name){
+        User user=userRepository.findByNameIgnoreCase(name);
+        Page<Recipe> resultPage= recipeService.getRecipeByUser(page,size,user);
+        return resultPage.getContent();
+    }
 
     @GetMapping("/all")
     public List<Recipe> findAllPaginated(@RequestParam("page") int page) {
